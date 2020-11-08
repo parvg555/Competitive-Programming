@@ -15,7 +15,7 @@ int main()
     func(vect); 
   
     for (int i=0; i<vect.size(); i++) 
-       cout << vect[i] << " "; 
+       cout << vect[i] <<" "; 
    
     return 0; 
 } 
