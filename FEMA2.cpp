@@ -11,7 +11,6 @@ void answer(){
     cin>>n>>k;
     string s;
     cin>>s;
-
     int ans = 0;
     int sheets = 0;
     int sh[n];
@@ -20,7 +19,6 @@ void answer(){
     queue <int> magnet;
     for(int i=0;i<n;i++){
         sh[i] = sheets;
-
         if(s[i] == 'I'){
             bool flag = false;
             if(magnet.size()>0){
@@ -68,12 +66,10 @@ void answer(){
                 magnet.pop();
             }
         }
-
         if(s[i]==':'){
             sheets++;
         }
     }
-
     cout<<ans<<endl;
 }
 
