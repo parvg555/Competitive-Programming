@@ -73,8 +73,6 @@ void sol(){
 
 int main(void){
     fast;
-    inn;
-    outt;
     test(t){
         sol();
     }
