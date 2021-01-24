@@ -34,6 +34,7 @@ const int mxn=1e6+6;
 bool composite[mxn]={0};
 set <int> prime;
 
+
 void gensieve(){
     for(int i=2;i<=mxn;i++)
     {
@@ -50,8 +51,12 @@ void sol(){
     cin>>n;
     int count = 0; 
     for(auto x :prime){
-        if(2+x<=n && prime.count(2+x)>0){
-            count++;
+        if(2+x<=n){
+            if(composite[2+x]==0){
+                count++;
+            }
+        }else{
+            break;
         }
     }
     cout<<count<<endl;
