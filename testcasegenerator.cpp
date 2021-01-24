@@ -15,7 +15,7 @@ typedef long double  ld;
 #define fast ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0)
 #define test(t) ll t;cin>>t;while(t--)
 #define mem(a,b) memset(a,b,sizeof(a))
-#define inn freopen("output.txt", "r", stdin)
+#define inn freopen("input.txt", "r", stdin)
 #define outt freopen("output.txt", "w", stdout)
 #define all(arr) arr.begin(),arr.end()
 #define fr(i,n) for(ll i=0;i<(n);++i)
@@ -30,38 +30,11 @@ typedef long double  ld;
 #  FileName:        PTUPLES
 #  Created On:      24/01/2021
 =============================================================================*/
-const int mxn=1e6+6;
-bool composite[mxn]={0};
-ll ans[mxn]={0};
-
-void gensieve(){
-    for(int i=2;i<=mxn;i++)
-    {
-        if(composite[i]){
-            ans[i] = ans[i-1];
-            continue;
-        }
-        if(composite[i-2]==0 && i>3){
-            ans[i] = ans[i-1]+1;
-        }else{
-            ans[i] = ans[i-1];
-        }
-        for(int j=2*i;j<=mxn;j+=i)
-            composite[j]=1;
-    }
-}
-
-
-void sol(){
-    int n;
-    cin>>n;
-    cout<<ans[n]<<endl;
-}
 
 int main(void){
-    fast;
-    gensieve();
-    test(t){
-        sol();
+    outt;
+    cout<<"1000000"<<endl;
+    for(int i=0;i<1000000;i++){
+        cout<<"1000000"<<endl;
     }
 }
