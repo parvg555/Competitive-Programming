@@ -50,7 +50,7 @@ void sol(){
     fr(i,n){
         arr.pb(make_tuple(weight[i],pos[i],i));
     }
-    sort(arr.begin(),arr.end());
+    sort(all(arr));
     ll ans = 0;
     ll last = get<2>(arr[0]);
     for(ll i = 1;i<n;i++){
