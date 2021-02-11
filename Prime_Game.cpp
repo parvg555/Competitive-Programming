@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
+#include<chrono>
 using namespace std;
+using namespace std::chrono;
 #define mod 1000000007
 #define pb push_back
 #define mp make_pair
@@ -27,54 +29,66 @@ typedef long double  ld;
 /*=============================================================================
 #  Author:          Parv Gupta - https://github.com/parvg555/
 #  Email:           parvg555@gmail.com
-#  FileName:        Team_Name.cpp
-#  Created On:      09/02/2021
-#  Problem Code:    TEAMNAME
+#  FileName:        Prime_Game.cpp
+#  Created On:      11/02/2021
+#  Problem Code:    PRIGAME
 =============================================================================*/
+const int mxn = 1e6+6;
 
+bool prime[mxn];
+int prime_before[mxn];
+
+void sieve(){
+    for(ll p=2;p*p<=mxn;p++){
+        if(prime[p]==true){
+            for(ll i=p*p;i<=mxn;i+=p){
+                prime[i]=false;
+            }
+        }
+    }
+}
+
+void primes(){
+    int count = 0;
+    for(int i=2;i<=mxn;i++){
+        if(prime[i]==true){
+            count++;
+        }
+        prime_before[i]=count;
+    }
+}
 
 void sol(){
-    ll n;
-    cin>>n;
-    set <pair <string, char>> arr;
-    set <pair <string, char>>::iterator itr;
-    set <char> firsts;
-    set <string> seconds;
-    fr(i,n){
-        string s;
-        cin>>s;
-        char first = s[0];
-        s.erase(s.begin());
-        firsts.insert(first);
-        seconds.insert(s);
-        arr.insert(mp(s,first));
-    }
-    ll ans = 0;
-    itr = arr.begin();
-    pair <string, char> temp = *itr;
-    string s = temp.fi;
-    ll total = firsts.size();
-    ll total2 = seconds.size();
-    ll count = 1;
-    itr++;
-    for(;itr!=arr.end();itr++){
-        temp = *itr;
-        cout<<"string: "<<temp.fi<<endl;
-        if(s!=temp.fi){
-            ans+=count*(total-count);
-            count=0;
+    ll x,y;
+    cin>>x>>y;
+    if(y==1){
+        if(x>2){
+            cout<<"Divyam"<<endl;
+            return;
+        }else{
+            cout<<"Chef"<<endl;
+            return;
         }
-        count++;
-        s = temp.fi;
-        cout<<"count: "<<count<<" ans:"<<ans<<endl;
+    }else{
+        //cout<<"prime counter: "<<prime_counter[x]<<endl;
+        if(prime_before[x]>y){
+            cout<<"Divyam"<<endl;
+            return;
+        }else{
+            cout<<"Chef"<<endl;
+            return;
+        }
     }
-    ans +=count*(total-count);
-    cout<<ans<<endl;
+    return;
 }
 
 int main(void){
     fast;
+    memset(prime,true,sizeof(prime));
+    sieve();
+    primes();
     test(t){
         sol();
     }
+    
 }

@@ -39,15 +39,3 @@ func maxfun() {
 	var ans int64 = 2 * abs(max-min)
 	fmt.Println(ans)
 }
-
-func main() {
-	defer writer.Flush()
-	var t int64
-	scanf("%d\n", &t)
-	var i int64
-
-	for i = 0; i < t; i++ {
-		maxfun()
-	}
-
-}
