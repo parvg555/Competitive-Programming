@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include<chrono>
 using namespace std;
 using namespace std::chrono;
 #define mod 1000000007
@@ -25,7 +24,8 @@ typedef long double  ld;
 #define per(i,a,b) for(ll i=a;i>=b;i--)
 #define remin(a,b) (a=min((a),(b)))
 #define remax(a,b) (a=max((a),(b)))
-
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
 /*=============================================================================
 #  Author:          Parv Gupta - https://github.com/parvg555/
 #  Email:           parvg555@gmail.com
