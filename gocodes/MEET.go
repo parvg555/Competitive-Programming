@@ -22,7 +22,39 @@ func add12(h int64, m int64, s string) (int64, int64) {
 	return h, m
 }
 
-func main() {
+func timecheck(h int64, m int64, h1 int64, m1 int64, h2 int64, m2 int64) bool {
+	//printf("%d %d %d %d %d %d\n",h,m,h1,m1,h2,m2)
+	if h1 < h2 {
+		if h > h1 && h < h2 {
+			return true
+		} else if h == h1 && m >= m1 {
+			return true
+		} else if h == h2 && m <= m2 {
+			return true
+		}
+	} else if h1 == h2 && m1 < m2 {
+		if h == h1 && m >= m1 && m <= m2 {
+			return true
+		}
+	} else if h1 == h2 && m1 == m2 {
+		if h == h1 && m == m1 {
+			return true
+		}
+	} else {
+		if h > h1 && h < 24 {
+			return true
+		} else if h < h2 && h >= 0 {
+			return true
+		} else if h == h1 && m >= m1 {
+			return true
+		} else if h == h2 && m <= m2 {
+			return true
+		}
+	}
+	return false
+}
+
+func meet() {
 	defer writer.Flush()
 	var t int64
 	scanf("%d\n", &t)
@@ -43,18 +75,10 @@ func main() {
 			scanf("%d:%d %s %d:%d %s\n", &h1, &m1, &s1, &h2, &m2, &s2)
 			h1, m1 = add12(h1, m1, s1)
 			h2, m2 = add12(h2, m2, s2)
-			if h2 > h1 {
-				if h >= h1 && h <= h2 && m >= m1 && m <= m2 {
-					ans = append(ans, 1)
-				} else {
-					ans = append(ans, 0)
-				}
+			if timecheck(h, m, h1, m1, h2, m2) == true {
+				ans = append(ans, 1)
 			} else {
-				if h1 >= h && h2 <= h && m1 >= m && m2 <= m1 {
-					ans = append(ans, 1)
-				} else {
-					ans = append(ans, 0)
-				}
+				ans = append(ans, 0)
 			}
 		}
 		for k := 0; k < len(ans); k++ {
