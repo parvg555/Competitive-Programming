@@ -40,9 +40,9 @@ int prime_before[mxn];
 
 void sieve(){
     for(ll p=2;p*p<=mxn;p++){
-        if(prime[p]==true){
+        if(prime[p]==false){
             for(ll i=p*p;i<=mxn;i+=p){
-                prime[i]=false;
+                prime[i]=true;
             }
         }
     }
@@ -51,7 +51,7 @@ void sieve(){
 void primes(){
     int count = 0;
     for(int i=2;i<=mxn;i++){
-        if(prime[i]==true){
+        if(prime[i]==false){
             count++;
         }
         prime_before[i]=count;
@@ -63,19 +63,19 @@ void sol(){
     cin>>x>>y;
     if(y==1){
         if(x>2){
-            cout<<"Divyam"<<endl;
+            cout<<"Divyam\n";
             return;
         }else{
-            cout<<"Chef"<<endl;
+            cout<<"Chef\n";
             return;
         }
     }else{
         //cout<<"prime counter: "<<prime_counter[x]<<endl;
         if(prime_before[x]>y){
-            cout<<"Divyam"<<endl;
+            cout<<"Divyam\n";
             return;
         }else{
-            cout<<"Chef"<<endl;
+            cout<<"Chef\n";
             return;
         }
     }
@@ -83,12 +83,16 @@ void sol(){
 }
 
 int main(void){
+    //auto start = high_resolution_clock::now();
     fast;
-    memset(prime,true,sizeof(prime));
     sieve();
     primes();
+    prime_before[0] = 0;
+    prime_before[1] = 0;
     test(t){
         sol();
     }
-    
+    //auto stop = high_resolution_clock::now();
+    //auto duration = duration_cast<microseconds>(stop - start);
+    //cout << "Time taken by function: "<< duration.count() << " microseconds" << endl;
 }
