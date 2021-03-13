@@ -24,6 +24,15 @@ typedef long double  ld;
 #define remin(a,b) (a=min((a),(b)))
 #define remax(a,b) (a=max((a),(b)))
 
+/*=============================================================================
+#  Author:          Parv Gupta - https://github.com/parvg555/
+#  Email:           parvg555@gmail.com
+#  FileName:        Paparazzi_Gennady.cpp
+#  Created On:      12/03/2021
+#  Problem Code:    PAPARAZI
+=============================================================================*/
+
+
 void sol(){
     ll n;
     cin>>n;
@@ -33,20 +42,31 @@ void sol(){
         cin>>temp;
         arr.pb(temp);
     }
-    vi right (n+1);
-    ll maxn = n-1;
-    for(int i=n-1;i>=0;--i){
-        right[i] = maxn;
-        if(arr[i]>arr[maxn]){
-            maxn=i;
-        }
+    if(n==2){
+        cout<<"1\n";
+        return;
     }
-    //fr(i,n+1){
-        //cout<<left[i]<<",";
-    //}
-    ll ans = 0;
-    fr(i,n){
-        ans = max(ans,abs(i-right[i]));
+    ll ans = LONG_LONG_MIN;
+    ll start = 0;
+    ll height = arr[0];
+    ll curr_height = 0;
+    ll curr_index = -1;
+    for(;start<n-1;){
+        rep(i,start+1,n-1){
+            if(curr_index==-1){
+                curr_index = i;curr_height = arr[i];
+                remax(ans,curr_index-start);
+                continue;
+            }
+            double s = double(1.0*(arr[i]-height)/(i-start));
+            double h = double(1.0*s*(curr_index-start));
+            h+=height;
+            if(!(h>=curr_height))continue;
+            curr_height = arr[i];curr_index = i;
+            remax(ans,curr_index-start);
+        }
+        start = curr_index;height = curr_height;
+        curr_height = 0;curr_index = -1;
     }
     cout<<ans<<"\n";
 }
