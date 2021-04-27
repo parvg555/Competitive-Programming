@@ -32,44 +32,48 @@ typedef long double  ld;
 #  Problem Code:    TEAMNAME
 =============================================================================*/
 
-
 void sol(){
     ll n;
     cin>>n;
-    set <pair <string, char>> arr;
-    set <pair <string, char>>::iterator itr;
-    set <char> firsts;
-    set <string> seconds;
+    ll ans = 0;
+    set<char> checking;
+    map<string,vector<char>> mp;
+    map<string,vector<char>>::iterator it1;
+    map<string,vector<char>>::iterator it2;
     fr(i,n){
         string s;
         cin>>s;
-        char first = s[0];
+        char a = s[0];
         s.erase(s.begin());
-        firsts.insert(first);
-        seconds.insert(s);
-        arr.insert(mp(s,first));
-    }
-    ll ans = 0;
-    itr = arr.begin();
-    pair <string, char> temp = *itr;
-    string s = temp.fi;
-    ll total = firsts.size();
-    ll total2 = seconds.size();
-    ll count = 1;
-    itr++;
-    for(;itr!=arr.end();itr++){
-        temp = *itr;
-        cout<<"string: "<<temp.fi<<endl;
-        if(s!=temp.fi){
-            ans+=count*(total-count);
-            count=0;
+        if(mp.find(s)!=mp.end()){
+            mp[s].pb(a);
+        }else{
+            vector <char> temp;
+            temp.pb(a);
+            mp.insert({s,temp});
         }
-        count++;
-        s = temp.fi;
-        cout<<"count: "<<count<<" ans:"<<ans<<endl;
     }
-    ans +=count*(total-count);
-    cout<<ans<<endl;
+
+    for(it1 = mp.begin();it1!=mp.end();it1++){
+        it2 = it1;
+        ++it2;
+        for(;it2!=mp.end();it2++){
+            vector <char> noob1 = it1->sec;
+            vector <char> noob2 = it2->sec;
+            ll noob1_size = noob1.size();
+            ll noob2_size = noob2.size();
+            fr(i,noob1_size){
+                checking.insert(noob1[i]);
+            }
+            fr(i,noob2_size){
+                checking.insert(noob2[i]);
+            }
+            ll set_size = checking.size();
+            ans += (set_size-noob1_size)*(set_size-noob2_size);
+            checking.clear();
+        }
+    }
+    cout<<2*ans<<"\n";
 }
 
 int main(void){
