@@ -26,38 +26,42 @@ typedef long double  ld;
 long long powerof2[] = {1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,1073741824,2147483648,4294967296};
 
 void sol(){
-    ll n,x;
-    cin>>n>>x;
-    vi arr;
-    ll sum = 0;
-    fr(i,n){
-        ll temp;
-        cin>>temp;
-        sum+=temp;
-        arr.pb(temp);
-    }
-    sort(all(arr));
-    if(sum==x){
-        cout<<"NO\n";
-        return;
+    ll n;
+    cin>>n;
+    if(n==1){
+        cout<<"1\n";
+    }else if(n==2){
+        cout<<"-1\n";
+    }else if(n==3){
+        ll ans[3][3] = {{2,9,7},{4,6,3},{1,8,5}};
+        fr(i,3){
+            fr(j,3){
+                cout<<ans[i][j]<<" ";
+            }
+            cout<<"\n";
+        }
     }else{
-        cout<<"YES\n";
-        ll sum2 = 0;
-        fr(i,n){
-            sum2+=arr[i];
-            if(sum2==x){
-                ll temp = arr[i];
-                arr[i] = arr[n-1];
-                arr[n-1]=temp;
-                break;
+        ll ans[n][n] = {0};
+        ll start = 1;
+        fr(j,n){
+            for(int i=0;i<n;i+=2){
+                ans[i][j] = start;
+                start++;
             }
         }
+        for(ll j=0;j<n;j++){
+            for(int i=1;i<n;i+=2){
+                ans[i][j] = start;
+                start++;
+            }
+        }
+        fr(i,n){
+            fr(j,n){
+                cout<<ans[i][j]<<" ";
+            }
+            cout<<"\n";
+        }
     }
-    fr(i,n){
-        cout<<arr[i]<<" ";
-    }
-    cout<<"\n";
-
 }
 
 int main(void){
