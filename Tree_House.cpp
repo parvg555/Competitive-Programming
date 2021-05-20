@@ -5,7 +5,7 @@ using namespace std;
 #define mp make_pair
 #define fi first
 #define sec second
-typedef long long ll;
+typedef unsigned long long ll;
 typedef long double  ld;
 #define pii pair<ll,ll>
 #define vi vector< ll >
@@ -50,11 +50,11 @@ ll dfs1(ll n, ll parent){
     sort(all(weight));
     reverse(all(weight));
     for(auto i: weight){
-        count = (count+ (m*i)%mod)%mod;
-        m = (m+1)%mod;
+        count = count+ (m*i);
+        m = m+1;
     }
     //cout<<n<<" "<<count+1<<"\n";
-    return (count+1)%mod;
+    return count+1;
 }
 
 void clean(ll n){
