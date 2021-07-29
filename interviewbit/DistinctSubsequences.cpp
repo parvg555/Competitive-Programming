@@ -30,9 +30,3 @@ int numDistinct(string A, string B) {
     }
     return dp[m][n];
 }
-
-int main(void){
-    string s1,s2;
-    cin>>s1>>s2;
-    cout<<numDistinct(s1,s2);
-}
