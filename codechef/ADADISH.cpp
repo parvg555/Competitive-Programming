@@ -54,7 +54,6 @@ int calculatetime(vector <int> dish){
 int main(void){
     int t;
     cin>>t;
-    
     while(t--){
         int n;
         cin>>n;
