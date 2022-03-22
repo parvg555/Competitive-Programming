@@ -24,6 +24,8 @@ typedef long double  ld;
 #define remin(a,b) (a=min((a),(b)))
 #define remax(a,b) (a=max((a),(b)))
 
+// parv nub
+
 void sol(){
     ll n;
     cin>>n;
