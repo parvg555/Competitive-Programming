@@ -15,10 +15,22 @@ int minDistance(string A, string B) {
                 if(A[i-1] == B[j-1]){
                     dp[i][j] = min(dp[i-1][j] + 1 , min(dp[i][j-1] + 1, dp[i-1][j-1]));
                 }else{
-                    dp[i][j] = min(dp[i-1][j] + 1 , min(dp[i][j-1] + 1, dp[i-1][j-1] + 1));
+                    dp[i][j] = min(dp[i-1][j] + 1 , min(dp[i][j-1] + 1, dp[i-1][j-1] + 2));
                 }
             }
+            if(dp[i][j]<10){
+                cout<<"0"<<dp[i][j]<<" ";
+            }else{
+                cout<<dp[i][j]<<" ";
+            }
         }
+        cout<<"\n";
     }
     return dp[n][m];
+}
+
+int main(void){
+    string b = "brief";
+    string a = "drive";
+    cout<<minDistance(a,b)<<"\n";
 }
